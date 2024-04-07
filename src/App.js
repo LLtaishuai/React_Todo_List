@@ -14,6 +14,10 @@ function App() {
     setList(list.filter((item) => item.id !== id));
   };
 
+  const doCheckChange = (id) => {
+    setList(list.map((item) => item.id !== id ? item : {...item, checked: !item.checked}));
+  };
+
   const [list, setList] = useState([
     {
       id: 0,
@@ -42,7 +46,7 @@ function App() {
       ></TodoInput>
       <div>
         {list.map((item) => (
-          <TodoItem item={item} doDelTodo={doDelTodo} key={item.id}></TodoItem>
+          <TodoItem item={item} doDelTodo={doDelTodo} doCheckChange={doCheckChange} key={item.id}></TodoItem>
         ))}
       </div>
     </div>
